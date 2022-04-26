@@ -1,8 +1,9 @@
 @extends('layout')
+
 @section('content')
     <div class="row">
         <div class="col">
-            <h1>Add new Blog</h1>
+            <h1>Edit Blog</h1>
         </div>
     </div>
 
@@ -10,6 +11,7 @@
         <div class="col">
             <form action="{{ route('blogs.update', $blog->id) }}" method="POST">
                 @csrf
+
                 @method('PUT')
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -32,7 +34,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-check">
-                            <input type="checkbox" name="active" id="flexCheckChecked" class="form-check-input">
+                            <input type="checkbox" name="is_active" id="flexCheckChecked" class="form-check-input">
                             @if($blog->is_active == 1)
                                 checked
                             @endif

@@ -1,11 +1,13 @@
 @extends('layout')
+
 @section('content')
     <div class="row">
         <div class="col">
             <h1>Add new Blog</h1>
+            <a href="{{route('blogs.index')}}" class="btn btn-primary" title="Back">Back</a>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col">
             <form action="{{ route('blogs.store') }}" method="POST">
