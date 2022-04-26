@@ -12,6 +12,8 @@
             <td>Title</td>
             <td>Author</td>
             <td>Description</td>
+            <td>Created</td>
+            <td>Updated</td>
         </tr>
     <div class="row">
         <div class="col">
@@ -19,11 +21,17 @@
           <td><a href="{{route('blogs.show', $blog->id)}}">{{$blog->title}}</a></td>
           <td>{{ $blog->author}}</td>
           <td>{{ $blog->description}}</td>
-          <td>
+          <td>{{$blog->created_at}}</td>
+          <td>{{ $blog->updated_at }}</td>
       </tr>
         </div>
     </div>
     </table>
-    <a href="{{route('blogs.index')}}" class="btn btn-primary" title="Back">Back</a>
+    <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST">
+        <a href="{{route('blogs.index')}}" class="btn btn-primary" title="Back">Back</a>
 
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
 @endsection
