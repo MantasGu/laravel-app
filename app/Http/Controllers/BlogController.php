@@ -37,7 +37,7 @@ class BlogController extends Controller
     {
     //$blog = Blog::find($id);
 
-    return View('blogs.show', compact('blog'));
+    return view('blogs.show', compact('blog'));
     }
 
     public function edit(Blog $blog): View
@@ -54,12 +54,16 @@ class BlogController extends Controller
         ]);
 
         $blog= Blog::find($id);
+
         $blog->title = $request->title;
-        $blog->auhor = $request->author;
+        $blog->author = $request->author;
         $blog->description = $request->description;
         $blog->is_active = ($request->is_active) ?? 0;
 
-        return redirect()->route('blogs.index')->with('success', 'Blog updated successfully');
+        $blog->update();
+
+        return redirect()->route('blogs.index')
+            ->with('success', 'Blog updated successfully');
     }
 
     public function destroy(Blog $blog): RedirectResponse
